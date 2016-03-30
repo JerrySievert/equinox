@@ -67,6 +67,10 @@ db.connect (argv.database, argv.host, argv.user, argv.password, function (err) {
         process.exit(1);
       }
 
+      // execute tests here
+      assert(false);
+
+      // drop the schema`
       db.query('DROP SCHEMA equinox CASCADE', function (err) {
         if (err) {
           console.log("ERROR: " + err);
