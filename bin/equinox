@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+var yargs = require('yargs')
+    .usage('Equinox.\nUsage: $0')
+    .demand('database')
+    .alias('d', 'database')
+    .describe('database', 'Database to be installed in')
+    .default('host', 'localhost')
+    .alias('h', 'host')
+    .describe('host', 'Hostname')
+    .alias('u', 'user')
+    .describe('user', 'User')
+    .alias('p', 'password')
+    .describe('password', 'Password')
+    .describe('dir', 'Directory to load all files into the database')
+    .array('files')
+    .describe('files', 'Files to load into the database')
+    ;
+
+var argv = yargs.argv;
+var db = require(__dirname + '/../lib/db');
+var loader = require(__dirname + '/../lib/loader');
+
+var fs = require('fs');
+
+if (argv.database === true) {
+  yargs.showHelp();
+  process.exit(0);
+}
+
+var files = [ ];
+
+// read any file arguments
+if (argv.files) {
+  files = files.concat(argv.files);
+}
+
+// read a directory if asked
+if (argv.dir) {
+  try {
+    files = files.concat(fs.readdirSync(argv.dir));
+  } catch (err) {
+    console.log("ERROR: Unable to read from directory " + argv.dir);
+    process.exit(1);
+  }
+}
+
+// give the files a full path
+files = files.map(function (f) { return process.cwd() + '/' + argv.dir + '/' + f; });
+
+// try to connect to the database
+db.connect (argv.database, argv.host, argv.user, argv.password, function (err) {
+  if (err) {
+    console.log("ERROR: Unable to connect to database (" + err.toString() + ")");
+    return;
+  }
+
+  db.query('CREATE SCHEMA IF NOT EXISTS equinox', function (err) {
+    if (err) {
+      console.log("ERROR: " + err);
+      process.exit(1);
+    }
+
+    loader.load(files, function (err) {
+      if (err) {
+        console.log("ERROR: " + err);
+        process.exit(1);
+      }
+
+      db.query('DROP SCHEMA equinox CASCADE', function (err) {
+        if (err) {
+          console.log("ERROR: " + err);
+          process.exit(1);
+        }
+
+        process.exit(0);
+      });
+    });
+  });
+});

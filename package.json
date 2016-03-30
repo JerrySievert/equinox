@@ -1,0 +1,28 @@
+{
+  "name": "equinox",
+  "description": "Testing for Postgres",
+  "version": "1.0.0",
+  "author": "Jerry Sievert <code@legitimatesounding.com>",
+  "dependencies": {
+    "ansi-color": "^0.2.1",
+    "pg": "^4.5.1",
+    "yargs": "^4.3.1"
+  },
+  "keywords": [
+    "plv8",
+    "postgres",
+    "test",
+    "testing",
+    "tests"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint lib/*.js lib/*/*.js index.js bin/equinox && tape test/*.js | tap-spec"
+  },
+  "devDependencies": {
+    "eslint": "^2.5.3",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.5.1"
+  }
+}
