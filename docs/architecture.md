@@ -59,7 +59,7 @@ CREATE OR REPLACE FUNCTION _modulename_ RETURNS JSON AS $$
 // instrumentation
 // [...]
 
-your_code_code
+your_code_here()
 
 // return results of tests
 return test_results;
