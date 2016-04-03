@@ -3,13 +3,14 @@ var test_statuses = [ ];
 var current_test;
 
 // assertion failure
-function fail (actual, expected, message, operator) {
+function fail (actual, expected, message, operator, error) {
   test_statuses.push({
     actual:       actual,
     expected:     expected,
     message:      message,
     operator:     operator,
     status:       "fail",
+    error:        error,
     current_test: current_test
   });
 }

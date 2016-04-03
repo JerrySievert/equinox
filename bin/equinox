@@ -14,13 +14,19 @@ var yargs = require('yargs')
     .describe('password', 'Password')
     .array('files')
     .describe('files', 'Files to load into the database')
+    .describe('reporter', 'Test reporter')
+    .alias('r', 'reporter')
+    .default('reporter', 'dot')
     ;
 
 var argv = yargs.argv;
 var db = require(__dirname + '/../lib/db');
 var loader = require(__dirname + '/../lib/loader');
 var runner = require('../lib/runners/async').runner;
-var reporter = require('../lib/reporters/dot').reporter;
+var dot = require('../lib/reporters/dot').reporter;
+var spec = require('../lib/reporters/spec').reporter;
+
+var reporter = argv.reporter === 'spec' ? spec : dot;
 
 var fs = require('fs');
 

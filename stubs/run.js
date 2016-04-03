@@ -18,7 +18,11 @@ for (var i = 0; i < tests.length; i++) {
   for (var j = 0; j < keys.length; j++) {
     if (typeof test[keys[j]] === 'function') {
       current_test = keys[j];
-      test[keys[j]]();
+      try {
+        test[keys[j]]();
+      } catch (err) {
+        fail(undefined, undefined, undefined, undefined, err);
+      }
     } else {
       current_test = null;
     }
