@@ -12,7 +12,6 @@ var yargs = require('yargs')
     .describe('user', 'User')
     .alias('p', 'password')
     .describe('password', 'Password')
-    .describe('dir', 'Directory to load all files into the database')
     .array('files')
     .describe('files', 'Files to load into the database')
     ;
@@ -20,6 +19,7 @@ var yargs = require('yargs')
 var argv = yargs.argv;
 var db = require(__dirname + '/../lib/db');
 var loader = require(__dirname + '/../lib/loader');
+var runner = require('../lib/runners/async').runner;
 
 var fs = require('fs');
 
@@ -34,19 +34,6 @@ var files = [ ];
 if (argv.files) {
   files = files.concat(argv.files);
 }
-
-// read a directory if asked
-if (argv.dir) {
-  try {
-    files = files.concat(fs.readdirSync(argv.dir));
-  } catch (err) {
-    console.log("ERROR: Unable to read from directory " + argv.dir);
-    process.exit(1);
-  }
-}
-
-// give the files a full path
-files = files.map(function (f) { return process.cwd() + '/' + argv.dir + '/' + f; });
 
 // try to connect to the database
 db.connect (argv.database, argv.host, argv.user, argv.password, function (err) {
@@ -68,16 +55,18 @@ db.connect (argv.database, argv.host, argv.user, argv.password, function (err) {
       }
 
       // execute tests here
-      assert(false);
+      runner(files, function (err, results) {
+        console.log(results);
 
-      // drop the schema`
-      db.query('DROP SCHEMA equinox CASCADE', function (err) {
-        if (err) {
-          console.log("ERROR: " + err);
-          process.exit(1);
-        }
+        // drop the schema`
+        db.query('DROP SCHEMA equinox CASCADE', function (err, res) {
+          if (err) {
+            console.log("ERROR: " + err);
+            process.exit(1);
+          }
 
-        process.exit(0);
+          process.exit(0);
+        });
       });
     });
   });

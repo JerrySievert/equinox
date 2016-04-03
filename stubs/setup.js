@@ -34,6 +34,6 @@ var assert = {
 };
 
 // check for setup method
-if (test_setup && typeof test_setup === 'function') {
+if (typeof test_setup === 'function') {
   test_setup();
 }

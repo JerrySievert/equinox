@@ -1,5 +1,5 @@
 // check for teardown method
-if (test_teardown && typeof test_teardown === 'function') {
+if (typeof test_teardown === 'function') {
   test_teardown();
 }
 
