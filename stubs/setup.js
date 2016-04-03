@@ -1,24 +1,27 @@
 // test statuses stored here
 var test_statuses = [ ];
+var current_test;
 
 // assertion failure
 function fail (actual, expected, message, operator) {
   test_statuses.push({
-    actual:   actual,
-    expected: expected,
-    message:  message,
-    operator: operator,
-    status:  "fail"
+    actual:       actual,
+    expected:     expected,
+    message:      message,
+    operator:     operator,
+    status:       "fail",
+    current_test: current_test
   });
 }
 
 // assertion ok
 function ok (actual, expected, message) {
   test_statuses.push({
-    actual:   actual,
-    expected: expected,
-    status:   "pass",
-    message:  message
+    actual:       actual,
+    expected:     expected,
+    status:       "pass",
+    message:      message,
+    current_test: current_test
   });
 }
 

@@ -20,7 +20,7 @@ var argv = yargs.argv;
 var db = require(__dirname + '/../lib/db');
 var loader = require(__dirname + '/../lib/loader');
 var runner = require('../lib/runners/async').runner;
-var reporter = require('../lib/reporters/spec').reporter;
+var reporter = require('../lib/reporters/dot').reporter;
 
 var fs = require('fs');
 

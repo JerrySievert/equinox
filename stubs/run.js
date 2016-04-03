@@ -17,7 +17,10 @@ for (var i = 0; i < tests.length; i++) {
   // run the tests
   for (var j = 0; j < keys.length; j++) {
     if (typeof test[keys[j]] === 'function') {
+      current_test = keys[j];
       test[keys[j]]();
+    } else {
+      current_test = null;
     }
   }
 
