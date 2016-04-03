@@ -20,6 +20,7 @@ var argv = yargs.argv;
 var db = require(__dirname + '/../lib/db');
 var loader = require(__dirname + '/../lib/loader');
 var runner = require('../lib/runners/async').runner;
+var reporter = require('../lib/reporters/spec').reporter;
 
 var fs = require('fs');
 
@@ -56,7 +57,7 @@ db.connect (argv.database, argv.host, argv.user, argv.password, function (err) {
 
       // execute tests here
       runner(files, function (err, results) {
-        console.log(results);
+        reporter(results);
 
         // drop the schema`
         db.query('DROP SCHEMA equinox CASCADE', function (err, res) {
