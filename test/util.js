@@ -40,3 +40,10 @@ test('all_passed() fails when not correct', function (t) {
 
   t.equal(status, false, 'all_passed() returns false');
 });
+
+test('create_funcname() creates the correct function names', function (t) {
+  t.plan(2);
+
+  t.equal(util.create_funcname('foo.js'), 'foo_js', 'dots are replaced');
+  t.equal(util.create_funcname('foo/bar.js'), 'foo_bar_js', 'slashes are replaced');
+});
