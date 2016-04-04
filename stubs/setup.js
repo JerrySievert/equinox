@@ -37,6 +37,25 @@ var assert = {
   }
 };
 
+// initial setup
+var tests = [ ];
+
+// console methods
+console = {
+  log: function ( ) {
+    var args = Array.prototype.slice.call(arguments);
+    plv8.elog(NOTICE, args.join(' '));
+  },
+  warn: function ( ) {
+    var args = Array.prototype.slice.call(arguments);
+    plv8.elog(WARNING, args.join(' '));
+  },
+  error: function ( ) {
+    var args = Array.prototype.slice.call(arguments);
+    plv8.elog(ERROR, args.join(' '));
+  }
+};
+
 // check for setup method
 if (typeof test_setup === 'function') {
   test_setup();

@@ -47,3 +47,11 @@ test('create_funcname() creates the correct function names', function (t) {
   t.equal(util.create_funcname('foo.js'), 'foo_js', 'dots are replaced');
   t.equal(util.create_funcname('foo/bar.js'), 'foo_bar_js', 'slashes are replaced');
 });
+
+test('all_failed() returns the correct failed entries', function (t) {
+  t.plan(1);
+
+  var failed = util.all_failed(failing);
+
+  t.equal(failed.length, 1, 'a single failure found');
+});
