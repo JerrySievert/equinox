@@ -36,6 +36,22 @@ user|Database user to connect with|
 password|Database password to connect with|
 reporter|Test reporter to use (dot, spec, tap)|dot
 
+### Example Tests
+
+Tests are very simple to write and start using immediately.
+
+```js
+var tests = [
+  {
+    'should equal 1': function ( ) {
+      var result = plv8.execute('SELECT 1 AS num');
+      assert.equal(result.length, 1, "length should be 1");
+      assert.equal(result[0].num, 1, "num should equal 1");
+    }
+  }
+];
+```
+
 ## Contributing
 
 Contributions welcome! Please read the [contributing guidelines](CONTRIBUTING.md) first.
