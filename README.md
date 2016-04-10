@@ -2,7 +2,7 @@
 
 Testing for Postgres
 
-Simply write tests, and let `equinox` do the rest for you!
+Write tests, and let `equinox` do the rest for you!
 
 ## Install
 
@@ -38,7 +38,7 @@ reporter|Test reporter to use (dot, spec, tap)|dot
 
 ### Example Tests
 
-Tests are very simple to write and start using immediately.
+Tests are simple to write and start using immediately.
 
 ```js
 var tests = [
