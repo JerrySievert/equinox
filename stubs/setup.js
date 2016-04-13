@@ -11,7 +11,8 @@ function fail (actual, expected, message, operator, error) {
     operator:     operator,
     status:       "fail",
     error:        error,
-    current_test: current_test
+    current_test: current_test,
+    filename:     __filename
   });
 }
 
@@ -22,7 +23,8 @@ function ok (actual, expected, message) {
     expected:     expected,
     status:       "pass",
     message:      message,
-    current_test: current_test
+    current_test: current_test,
+    filename:     __filename
   });
 }
 
