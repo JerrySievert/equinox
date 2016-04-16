@@ -1,7 +1,7 @@
 {
   "name": "equinox",
   "description": "Testing for Postgres",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jerry Sievert <code@legitimatesounding.com>",
   "dependencies": {
     "ansi-color": "^0.2.1",
