@@ -25,8 +25,15 @@ var loader = require(__dirname + '/../lib/loader');
 var runner = require('../lib/runners/async').runner;
 var dot = require('../lib/reporters/dot').reporter;
 var spec = require('../lib/reporters/spec').reporter;
+var tap = require('../lib/reporters/tap').reporter;
 
-var reporter = argv.reporter === 'spec' ? spec : dot;
+var reporter = dot;
+
+if (argv.reporter === 'spec') {
+  reporter = spec;
+} else if (argv.reporter === 'tap') {
+  reporter = tap;
+}
 
 var fs = require('fs');
 
