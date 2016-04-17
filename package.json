@@ -1,12 +1,15 @@
 {
   "name": "equinox",
   "description": "Testing for Postgres",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Jerry Sievert <code@legitimatesounding.com>",
   "dependencies": {
     "ansi-color": "^0.2.1",
     "pg": "^4.5.1",
     "yargs": "^4.3.1"
+  },
+  "bin": {
+    "equinox": "./bin/equinox"
   },
   "keywords": [
     "plv8",
