@@ -47,7 +47,7 @@ adds the tests by name, executes them in *postgres*, and returns the results
 in the format requested.
 
 The tests are run using the `pg` module, and running _SELECT_ against each
-function.  The results are tallies, and reported.
+function.  The results are tallied, and reported.
 
 ## Inside Postgres
 
