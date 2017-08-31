@@ -12,6 +12,8 @@ var yargs = require('yargs')
     .describe('user', 'User')
     .alias('p', 'password')
     .describe('password', 'Password')
+    .alias('port', 'port')
+    .describe('port', 'Port')
     .array('files')
     .describe('files', 'Files to load and execute')
     .describe('reporter', 'Test reporter')
@@ -50,7 +52,7 @@ if (argv.files) {
 }
 
 // try to connect to the database
-db.connect (argv.database, argv.host, argv.user, argv.password, function (err) {
+db.connect (argv.database, argv.host, argv.user, argv.password, argv.port, function (err) {
   if (err) {
     console.log("ERROR: Unable to connect to database (" + err.toString() + ")");
     return;
