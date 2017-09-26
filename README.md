@@ -36,6 +36,15 @@ user|Database user to connect with|
 password|Database password to connect with|
 reporter|Test reporter to use (dot, spec, tap)|dot
 
+In addition to these options, it is possible to set `environment` variables
+that define the database connection.  These will be overridden by any command-line
+arguments:
+
+* `PGDATABASE`
+* `PGHOST`
+* `PGUSER`
+* `PGPASSWORD`
+
 ### Example Tests
 
 Tests are simple to write and start using immediately.

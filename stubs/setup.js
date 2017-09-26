@@ -42,8 +42,8 @@ var assert = {
 // initial setup
 var tests = [ ];
 
-// console methods
-console = {
+// equinox namespace
+equinox = {
   log: function ( ) {
     var args = Array.prototype.slice.call(arguments);
     plv8.elog(NOTICE, args.join(' '));
@@ -55,6 +55,22 @@ console = {
   error: function ( ) {
     var args = Array.prototype.slice.call(arguments);
     plv8.elog(ERROR, args.join(' '));
+  }
+};
+
+// console methods - deprecated as of 1.1.0
+console = {
+  log: function ( ) {
+    equinox.warn('DEPRICATION WARNING: console.log() has been deprecated, use equinox.log instead.');
+    equinox.log.call(arguments);
+  },
+  warn: function ( ) {
+    equinox.warn('DEPRICATION WARNING: console.warn() has been deprecated, use equinox.log instead.');
+    equinox.warn.call(arguments);
+  },
+  error: function ( ) {
+    equinox.warn('DEPRICATION WARNING: console.error() has been deprecated, use equinox.log instead.');
+    equinox.error.call(arguments);
   }
 };
 

@@ -51,6 +51,24 @@ if (argv.files) {
   files = files.concat(argv.files);
 }
 
+// look for any environment variables that could fill in any blanks, command-line
+// overrides anything in an environment variable
+if (argv.host === undefined) {
+  argv.host = process.env.PGHOST;
+}
+
+if (argv.user === undefined) {
+  argv.user = process.env.PGUSER;
+}
+
+if (argv.password === undefined) {
+  argv.password = process.env.PGPASS;
+}
+
+if (argv.database === undefined) {
+  argv.database = process.env.PGDATABASE;
+}
+
 // try to connect to the database
 db.connect (argv.database, argv.host, argv.user, argv.password, argv.port, function (err) {
   if (err) {
