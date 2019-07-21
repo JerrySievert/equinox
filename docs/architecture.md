@@ -42,7 +42,7 @@ reported via the `reporter` of your choice:
 
 ## Inside Node.js
 
-*Node.js* is used to instrument the tests.  It creates the *equinix schema*,
+*Node.js* is used to instrument the tests.  It creates the *equinox schema*,
 adds the tests by name, executes them in *postgres*, and returns the results
 in the format requested.
 
