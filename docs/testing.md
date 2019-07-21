@@ -11,7 +11,7 @@ for database interaction.
 
 ## API
 
-There is an API available for testing.  This falls into how the [architecture](architecure.md) sets up the tests.
+There is an API available for testing.  This falls into how the [architecture](architecture.md) sets up the tests.
 
 ## Tests
 
