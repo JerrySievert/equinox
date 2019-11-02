@@ -24,7 +24,7 @@
     "test": "eslint lib/*.js lib/*/*.js index.js bin/equinox && tape test/*.js | tap-nyan"
   },
   "devDependencies": {
-    "eslint": "^2.5.3",
+    "eslint": "^6.6.0",
     "tap-nyan": "0.0.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1"
